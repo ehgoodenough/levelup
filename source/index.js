@@ -1,15 +1,6 @@
 window.WIDTH = 640
 window.HEIGHT = 320
 
-var point = {
-    "x": 0,
-    "y": HEIGHT / 2,
-    "vx": 10,
-    "vy": 0,
-    "ax": 0,
-    "ay": 0
-}
-
 $(document).ready(function() {
     $("canvas").attr("width", WIDTH)
     $("canvas").attr("height", HEIGHT)
@@ -19,26 +10,30 @@ $(document).ready(function() {
     canvas.beginPath()
     canvas.moveTo(0, HEIGHT / 2)
     canvas.lineTo(WIDTH, HEIGHT / 2)
-    canvas.setLineDash([5])
     canvas.stroke()
-    canvas.setLineDash([0])
     canvas.moveTo(0, HEIGHT / 2)
+    
+    var curler = new Curler(4)
+    var curls = 0
     
     var basetimestamp = Date.now()
     
     window.addEventListener("devicemotion", function(event) {
         var acceleration = event.acceleration
         var timestamp = event.timeStamp
-        var delta = timestamp - basetimestamp
-        var interval = event.interval
         
-        var x = delta * (1/32)
-        var ay = acceleration.y
+        var x = (timestamp - basetimestamp) * (1/32)
+        var y = acceleration.y
         
-        canvas.lineTo(x, (HEIGHT / 2) - ay)
+        canvas.lineTo(x, (HEIGHT / 2) - y)
         canvas.stroke()
         
-        $("#debug").text(ay)
+        if(curler.isCurl({x: x, y: y})) {
+            curls += 1
+        }
+        
+        $(".numerator").text(curls)
+        $("#debug").text(y)
     }, false)
 })
 
@@ -54,15 +49,15 @@ var Curler = function(curldist) {
         var isCurl = false
         var prevpoint = this.pointqueue[this.pointqueue.length - 1]
         if(prevpoint != undefined) {
-            if(prevpoint.ty < point.ty) {
+            if(prevpoint.y < point.y) {
                 if(this.slope <= 0) {
                     this.slope = +100
-                    this.troughpoint = prevpoint.ty
+                    this.troughpoint = prevpoint.y
                 }
             } else {
                 if(this.slope >= 0) {
                     this.slope = -100
-                    this.peakpoint = prevpoint.ty
+                    this.peakpoint = prevpoint.y
                     if(this.peakpoint - this.troughpoint > this.curldist) {
                         isCurl = true
                     }
