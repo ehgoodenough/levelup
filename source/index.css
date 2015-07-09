@@ -6,8 +6,8 @@
 
 body
 {
+    margin: 2em auto;
     max-width: 60rem;
-    text-align: center;
     background-color: #F1F2F2;
 }
 
@@ -19,19 +19,5 @@ canvas
 
 section
 {
-    margin: 5rem auto;
-}
-
-.numerator
-{
-    color: #EE4136;
-    font-size: 15rem;
-    line-height: 0.8em;
-}
-
-.denominator
-{
-    color: #EE4136;
-    font-size: 2rem;
-    line-height: 1em;
+    margin: 1em auto;
 }

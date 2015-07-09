@@ -1,9 +1,6 @@
 var gulp = require("gulp")
 var gulp_connect = require("gulp-connect")
 
-var opn = require("opn")
-var del = require("del")
-
 gulp.task("default", function() {
     gulp.start("build")
 })
@@ -28,5 +25,4 @@ gulp.task("server", function() {
 		root: "./build",
 		livereload: true,
 	})
-    opn("http://localhost:8080")
 })

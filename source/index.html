@@ -5,16 +5,19 @@
 		<title>LevelUp</title>
         <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1">
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js" type="text/javascript"></script>
-		<script src="data.js" type="text/javascript"></script>
+        <script src="https://cdn.firebase.com/js/client/2.2.7/firebase.js" type="text/javascript"></script>
 		<script src="index.js" type="text/javascript"></script>
 		<link href="index.css" rel="stylesheet" type="text/css"/>
 	</head>
 	<body>
-        <canvas></canvas>
-        <div id="debug"></div>
         <section>
-            <div class="numerator">6</div>
-            <div class="denominator">/10</div>
+            <canvas></canvas>
+        </section>
+        <section>
+            <div>Absolute? <span id="absolute"></span></div>
+            <div>Alpha: <span id="alpha"></span></div>
+            <div>Beta: <span id="beta"></span></div>
+            <div>Gamma: <span id="gamma"></span></div>
         </section>
 	</body>
 </html>
