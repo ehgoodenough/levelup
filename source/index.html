@@ -10,9 +10,22 @@
 		<link href="index.css" rel="stylesheet" type="text/css"/>
 	</head>
 	<body>
-        <section>
-            <div>Gamma: <span id="gamma"></span></div>
+        <section class="visual">
+            <canvas class="sketch" width="1280" height="360"></canvas>
+        </section>
+        <section class="textual">
+            <div>Beta (x): <span id="x"></span></div>
+            <div>Gamma (y): <span id="y"></span></div>
+            <div>Alpha (z): <span id="z"></span></div>
+        </section>
+        <section class="visual">
+            <div class="angle-container">
+                <div class="angle" id="y"></div>
+            </div>
+        </section>
+        <section class="analysis">
 			<div>Curls: <span id="curls"></span></div>
+			<div>Distance: <span id="distance"></span></div>
         </section>
 	</body>
 </html>
